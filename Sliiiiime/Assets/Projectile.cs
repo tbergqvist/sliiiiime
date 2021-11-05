@@ -6,7 +6,6 @@ public class Projectile : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject playerOwner;
-    public GameObject explosion;
     void Start()
     {
         
@@ -22,13 +21,12 @@ public class Projectile : MonoBehaviour
     {
         if (this.CompareTag("Bomb"))
         {
-            if ((other.gameObject.TryGetComponent<Movement>(out _)))
+            if (other.gameObject.TryGetComponent<Movement>(out _))
             {
                 other.gameObject.transform.localScale *= 0.8f;
                 Destroy(gameObject);
                 return;
-                var exp = Instantiate(explosion, gameObject.transform.position, Quaternion.identity, null);
-                Destroy(exp, 3f);
+                
             }
             else { return; }
         }

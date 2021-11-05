@@ -14,6 +14,8 @@ public class Movement : MonoBehaviour
     private bool isBouncing = false;
     Rigidbody2D rb;
 
+    public GameObject explosion;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -62,6 +64,13 @@ public class Movement : MonoBehaviour
         {
             Destroy(other.gameObject);
             gameObject.transform.localScale *= 1.1f;
+        }
+        if (other.gameObject.CompareTag("Bomb"))
+        {
+            Destroy(other.gameObject);
+            gameObject.transform.localScale *= 0.8f;
+            var exp = Instantiate(explosion, gameObject.transform.position, Quaternion.identity, null);
+            Destroy(exp, 0.5f);
         }
     }
 
