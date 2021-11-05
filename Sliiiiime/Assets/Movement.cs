@@ -46,6 +46,5 @@ public class Movement : MonoBehaviour
             player1.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, Random.Range(2f, 5f)), ForceMode2D.Impulse);
             isJumping = false;
         }
-        
     }
 }
