@@ -909,7 +909,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player1: {fileID: 1885084938}
-  inputAxisSuffix: 
+  inputAxisSuffix: 2
   speed: 10
   jumpHeight: 250
   isJumping: 0
