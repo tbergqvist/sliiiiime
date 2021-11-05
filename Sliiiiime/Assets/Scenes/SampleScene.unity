@@ -735,7 +735,7 @@ GameObject:
   - component: {fileID: 1860983540}
   - component: {fileID: 1860983545}
   - component: {fileID: 1860983546}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Slime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -841,6 +841,7 @@ MonoBehaviour:
   inputAxisSuffix: 
   speed: 10
   jumpHeight: 250
+  wallCheckRange: 0.55
 --- !u!58 &1860983545
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -886,7 +887,7 @@ GameObject:
   - component: {fileID: 1885084941}
   - component: {fileID: 1885084940}
   - component: {fileID: 1885084939}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Slime2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -945,6 +946,7 @@ MonoBehaviour:
   inputAxisSuffix: 2
   speed: 10
   jumpHeight: 250
+  wallCheckRange: 0.55
 --- !u!23 &1885084942
 MeshRenderer:
   m_ObjectHideFlags: 0
