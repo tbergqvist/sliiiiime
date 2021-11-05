@@ -38,7 +38,24 @@ public class Movement : MonoBehaviour
             rb.AddForce(new Vector2(0, Random.Range(2f, 5f)), ForceMode2D.Impulse);
             isJumping = false;
         }
+        if (other.gameObject.CompareTag("Speeddrop"))
+        {
+            Destroy(other.gameObject);
+            speed += 25;
+            Invoke("decreaseSpeed", 7);
+        }
+        if (other.gameObject.CompareTag("Healthdrop"))
+        {
+            Destroy(other.gameObject);
+            gameObject.transform.localScale *= 1.1f;
+        }
     }
+
+    void decreaseSpeed()
+    {
+        speed -= 25;
+    }
+
     void Jump()
     {
         rb.AddForce(new Vector2(0, jumpHeight));
@@ -65,5 +82,7 @@ public class Movement : MonoBehaviour
         }
         return false;
     }
+
+
 
 }
