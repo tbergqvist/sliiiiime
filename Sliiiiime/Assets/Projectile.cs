@@ -19,16 +19,15 @@ public class Projectile : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject == playerOwner)
-        {
-            return;
-        }
-
         if (other.gameObject.TryGetComponent<Movement>(out _))
         {
             playerOwner.transform.localScale = playerOwner.transform.localScale + new Vector3(0.1f, 0.1f, 0.1f);
             other.gameObject.transform.localScale = other.gameObject.transform.localScale - new Vector3(0.1f, 0.1f, 0.1f);
 
+            Destroy(gameObject);
+        }
+        else if(other.gameObject.TryGetComponent<Platform>(out _))
+        {
             Destroy(gameObject);
         }
     }

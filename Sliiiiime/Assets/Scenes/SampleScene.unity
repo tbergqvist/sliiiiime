@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 472750482}
   - component: {fileID: 472750481}
   - component: {fileID: 472750480}
+  - component: {fileID: 472750484}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Untagged
@@ -254,6 +255,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!114 &472750484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 472750479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4971f72a0ffc58479833febd97179e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -349,6 +362,7 @@ GameObject:
   - component: {fileID: 986450040}
   - component: {fileID: 986450039}
   - component: {fileID: 986450038}
+  - component: {fileID: 986450042}
   m_Layer: 0
   m_Name: Wall (1)
   m_TagString: Untagged
@@ -468,6 +482,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!114 &986450042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 986450037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4971f72a0ffc58479833febd97179e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1168017447
 GameObject:
   m_ObjectHideFlags: 0
@@ -480,6 +506,7 @@ GameObject:
   - component: {fileID: 1168017449}
   - component: {fileID: 1168017448}
   - component: {fileID: 1168017451}
+  - component: {fileID: 1168017452}
   m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
@@ -599,6 +626,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1168017452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1168017447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4971f72a0ffc58479833febd97179e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1212849787
 GameObject:
   m_ObjectHideFlags: 0
@@ -799,14 +838,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea32ab2f07af0fe4a92052e549ce0097, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player1: {fileID: 1860983539}
   inputAxisSuffix: 
   speed: 10
   jumpHeight: 250
-  isJumping: 0
-  leftKey: 97
-  rightKey: 100
-  jumpKey: 119
 --- !u!58 &1860983545
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -835,8 +869,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 418989d161c92a24cb00f4255e7a3dd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1860983539}
   projectileSpeed: 10
+  shootCooldown: 0.5
   projectile: {fileID: 3094436083709358127, guid: 34b6bf6a9c20cb54da002711ead325c8, type: 3}
 --- !u!1 &1885084938
 GameObject:
@@ -908,14 +942,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea32ab2f07af0fe4a92052e549ce0097, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player1: {fileID: 1885084938}
   inputAxisSuffix: 2
   speed: 10
   jumpHeight: 250
-  isJumping: 0
-  leftKey: 276
-  rightKey: 275
-  jumpKey: 273
 --- !u!23 &1885084942
 MeshRenderer:
   m_ObjectHideFlags: 0
