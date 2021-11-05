@@ -8,10 +8,10 @@ public class Movement : MonoBehaviour
     public float speed = 100f;
     public float jumpHeight = 250f;
     public float wallCheckRange;
+    public Vector2 prevVel;
 
-    public GameObject explosion;
-
-    bool isJumping = false;
+    private bool isJumping = false;
+    private bool isBouncing = false;
     Rigidbody2D rb;
 
     // Start is called before the first frame update
@@ -33,14 +33,25 @@ public class Movement : MonoBehaviour
         {
             Jump();
         }
+        prevVel = rb.velocity;
+    }
+    private void stopBounce()
+    {
+        isBouncing = false;
     }
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (isJumping)
+        if (other.gameObject.TryGetComponent<Platform>(out _))
         {
-            rb.AddForce(new Vector2(0, Random.Range(2f, 5f)), ForceMode2D.Impulse);
             isJumping = false;
+            if (!isBouncing)
+            {
+                rb.AddForce(-prevVel * 0.8f, ForceMode2D.Impulse);
+                isBouncing = true;
+                Invoke("stopBounce", 0.2f);
+            }
         }
+
         if (other.gameObject.CompareTag("Speeddrop"))
         {
             Destroy(other.gameObject);
@@ -52,11 +63,6 @@ public class Movement : MonoBehaviour
             Destroy(other.gameObject);
             gameObject.transform.localScale *= 1.1f;
         }
-        if (other.gameObject.CompareTag("Bomb"))
-        {
-            var exp = Instantiate(explosion, other.gameObject.transform.position, Quaternion.identity, null);
-            Destroy(exp, 0.3f);
-        }
     }
 
     void decreaseSpeed()
@@ -66,16 +72,13 @@ public class Movement : MonoBehaviour
 
     void Jump()
     {
-        if(transform.localScale.magnitude > 3)
-        {
-            jumpHeight = 300f;
-        }
         rb.AddForce(new Vector2(0, jumpHeight));
         isJumping = true;
     }
     void TryMove(float horizontalMove)
     {
-        Vector3 moveVector = new Vector3(speed, 0) * Time.deltaTime * horizontalMove;
+        var actualSpeed = speed * (2 - Mathf.Min(1.8f, gameObject.transform.localScale.x));
+        Vector3 moveVector = new Vector3(actualSpeed, 0) * Time.deltaTime * horizontalMove;
         if (!WillWalkIntoWall(moveVector.normalized))
         {
             gameObject.transform.position += moveVector;
