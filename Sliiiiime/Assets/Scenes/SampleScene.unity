@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &276701397 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6889150876956697908, guid: cd8424d521688aa47bd418daa779b676, type: 3}
+  m_PrefabInstance: {fileID: 6889150875474466151}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &472750479
 GameObject:
   m_ObjectHideFlags: 0
@@ -720,6 +725,53 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1934763194
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1934763196}
+  - component: {fileID: 1934763195}
+  m_Layer: 0
+  m_Name: WorldSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1934763195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1934763194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0680c577f67728f4f891915cea20e8b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slime: {fileID: 276701397}
+  speedDrop: {fileID: 4157142853499637828, guid: 93d028984f0ef334ca121015cf4b762f, type: 3}
+  healthDrop: {fileID: 4808038852950686976, guid: c77c3cb20c980714c8f3e56eafe7e738, type: 3}
+  bombDrop: {fileID: 4753801917547465153, guid: 2f77fd38d85d7614e9e51837cfdc954f, type: 3}
+--- !u!4 &1934763196
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1934763194}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.0327835, y: -0.24612036, z: -1.5968242}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1952483301
 GameObject:
   m_ObjectHideFlags: 0
@@ -1110,6 +1162,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6889150876956697919, guid: cd8424d521688aa47bd418daa779b676, type: 3}
+      propertyPath: explosion
+      value: 
+      objectReference: {fileID: 7624095403598816204, guid: 6da62906b8a999547b413988f23850f0, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd8424d521688aa47bd418daa779b676, type: 3}
 --- !u!1001 &8923208411560814598

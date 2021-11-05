@@ -19,6 +19,17 @@ public class Projectile : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+        if (this.CompareTag("Bomb"))
+        {
+            if (other.gameObject.TryGetComponent<Movement>(out _))
+            {
+                other.gameObject.transform.localScale *= 0.8f;
+                Destroy(gameObject);
+                return;
+                
+            }
+            else { return; }
+        }
         if (other.gameObject.TryGetComponent(out Slime slime))
         {
             slime.TakeDamage(0.1f);
