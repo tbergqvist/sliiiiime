@@ -4,47 +4,39 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public GameObject player1;
+    public string inputAxisSuffix; 
     public float speed = 100f;
     public float jumpHeight = 250f;
 
-    public bool isJumping = false;
-
-    public KeyCode leftKey;
-    public KeyCode rightKey;
-    public KeyCode jumpKey;
+    bool isJumping = false;
+    Rigidbody2D rb;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(leftKey))
+        gameObject.transform.position += new Vector3(speed, 0) * Time.deltaTime * Input.GetAxis("Horizontal" + inputAxisSuffix);
+        if (Input.GetAxis("Vertical" + inputAxisSuffix) > 0.8f && !isJumping)
         {
-            player1.transform.position += new Vector3(-speed, 0) * Time.deltaTime;
-        }
-
-        if (Input.GetKey(rightKey))
-        {
-            player1.transform.position += new Vector3(speed, 0) * Time.deltaTime;
-        }
-
-        if (Input.GetKeyDown(jumpKey) && !isJumping)
-        {
-            player1.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpHeight));
-            isJumping = true;
+            Jump();
         }
     }
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (isJumping)
         {
-            player1.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, Random.Range(2f, 5f)), ForceMode2D.Impulse);
+            rb.AddForce(new Vector2(0, Random.Range(2f, 5f)), ForceMode2D.Impulse);
             isJumping = false;
         }
+    }
+    void Jump()
+    {
+        rb.AddForce(new Vector2(0, jumpHeight));
+        isJumping = true;
     }
 }
