@@ -57,7 +57,6 @@ public class Movement : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(transform.position, moveVector, wallCheckRange * transform.localScale.x);
         if(hit)
         {
-            print(hit.transform.name);
             if (hit.transform.TryGetComponent<Platform>(out _))
             {
                 return true;

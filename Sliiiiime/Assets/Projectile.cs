@@ -19,10 +19,10 @@ public class Projectile : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.TryGetComponent<Movement>(out _))
+        if (other.gameObject.TryGetComponent(out Slime slime))
         {
-            playerOwner.transform.localScale = playerOwner.transform.localScale + new Vector3(0.1f, 0.1f, 0.1f);
-            other.gameObject.transform.localScale = other.gameObject.transform.localScale - new Vector3(0.1f, 0.1f, 0.1f);
+            slime.TakeDamage(0.1f);
+            playerOwner.GetComponent<Slime>().DealtDamage(0.1f);
 
             Destroy(gameObject);
         }
