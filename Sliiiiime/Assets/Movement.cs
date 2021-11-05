@@ -9,6 +9,8 @@ public class Movement : MonoBehaviour
     public float jumpHeight = 250f;
     public float wallCheckRange;
     public Vector2 prevVel;
+    public AudioClip bounceClip;
+    public AudioClip jumpClip;
 
     private bool isJumping = false;
     private bool isBouncing = false;
@@ -50,6 +52,7 @@ public class Movement : MonoBehaviour
             {
                 rb.AddForce(-prevVel * 0.8f, ForceMode2D.Impulse);
                 isBouncing = true;
+                GameManager.Instance.PlaySound(bounceClip);
                 Invoke("stopBounce", 0.2f);
             }
         }
@@ -82,6 +85,7 @@ public class Movement : MonoBehaviour
     void Jump()
     {
         rb.AddForce(new Vector2(0, jumpHeight));
+        GameManager.Instance.PlaySound(jumpClip);
         isJumping = true;
     }
     void TryMove(float horizontalMove)

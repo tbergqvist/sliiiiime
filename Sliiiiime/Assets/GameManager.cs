@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public enum PlayerNumber { Player1, Player2, Player3 };
 
     public static GameManager Instance { get { return _instance; } }
+    public AudioSource soundtrackAudioSource;
 
 
     private void Awake()
@@ -22,7 +23,9 @@ public class GameManager : MonoBehaviour
             _instance = this;
         }
     }
-
+    private void Start()
+    {
+    }
     public void PlayerDied()
     {
         Slime[] allPlayers = FindObjectsOfType<Slime>();
@@ -66,5 +69,9 @@ public class GameManager : MonoBehaviour
             default:
                 break;
         }
+    }
+    public void PlaySound(AudioClip clip, float volume = 0.5f)
+    {
+        AudioSource.PlayClipAtPoint(clip, Vector3.zero,volume);
     }
 }
