@@ -11,7 +11,7 @@ public class LevelGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("onLevelChanged", 1, levelChangeRateSeconds);
+        InvokeRepeating("onLevelChanged", levelChangeRateSeconds, levelChangeRateSeconds);
         targetCameraPosition = Camera.main.transform.position;
     }
 
