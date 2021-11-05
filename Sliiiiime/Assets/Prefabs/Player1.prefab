@@ -102,6 +102,10 @@ MonoBehaviour:
   speed: 10
   jumpHeight: 250
   wallCheckRange: 0.55
+  prevVel: {x: 0, y: 0}
+  bounceClip: {fileID: 8300000, guid: 19628b03bab936a4b9838e358f5af547, type: 3}
+  jumpClip: {fileID: 8300000, guid: acae91a3b33ae5d4b81bc5d5ba52d0fd, type: 3}
+  explosion: {fileID: 7624095403598816204, guid: 6da62906b8a999547b413988f23850f0, type: 3}
 --- !u!50 &6889150876956697904
 Rigidbody2D:
   serializedVersion: 4
@@ -154,6 +158,7 @@ MonoBehaviour:
   projectileSpeed: 10
   shootCooldown: 0.5
   projectile: {fileID: 3094436083709358127, guid: 34b6bf6a9c20cb54da002711ead325c8, type: 3}
+  shootSound: {fileID: 8300000, guid: 1b8e6f83b3d417c45b8f271dff70c552, type: 3}
 --- !u!114 &6889150876956697907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,3 +174,6 @@ MonoBehaviour:
   playerNumber: 0
   lives: 3
   respawnTime: 5
+  isAlive: 1
+  takeDamageSound: {fileID: 8300000, guid: 54e710fc8d7a1c444842273db39f2995, type: 3}
+  respawnSound: {fileID: 8300000, guid: 66c67beeec663f641a32ae9950bffb95, type: 3}

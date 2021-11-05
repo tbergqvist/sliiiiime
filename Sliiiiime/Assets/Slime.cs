@@ -8,6 +8,8 @@ public class Slime : MonoBehaviour
     public int lives;
     public float respawnTime;
     public bool isAlive = true;
+    public AudioClip takeDamageSound;
+    public AudioClip respawnSound;
 
     Vector3 startPos;
     void Start()
@@ -18,6 +20,7 @@ public class Slime : MonoBehaviour
     public void TakeDamage(float amount)
     {
         transform.localScale -= new Vector3(amount, amount, amount);
+        GameManager.Instance.PlaySound(takeDamageSound,0.8f);
         if(transform.localScale.x <= 0)
         {
             Died();
@@ -52,6 +55,7 @@ public class Slime : MonoBehaviour
         EnablePlayer();
         transform.position = startPos;
         transform.localScale = Vector3.one;
+        GameManager.Instance.PlaySound(respawnSound,1);
     }
     void DisablePlayer()
     {

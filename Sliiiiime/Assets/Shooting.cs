@@ -7,6 +7,7 @@ public class Shooting : MonoBehaviour
     public float projectileSpeed = 10f;
     public float shootCooldown;
     public GameObject projectile;
+    public AudioClip shootSound;
     float shootTimer;
 
     void Start()
@@ -26,6 +27,7 @@ public class Shooting : MonoBehaviour
     }
     void ShootProjectile()
     {
+        GameManager.Instance.PlaySound(shootSound);
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 direction = (mousePosition - new Vector2(transform.position.x, transform.position.y)).normalized;
         Vector3 projectileForce = direction * projectileSpeed;
