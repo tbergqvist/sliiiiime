@@ -9,6 +9,8 @@ public class Movement : MonoBehaviour
     public float jumpHeight = 250f;
     public float wallCheckRange;
 
+    public GameObject explosion;
+
     bool isJumping = false;
     Rigidbody2D rb;
 
@@ -50,6 +52,11 @@ public class Movement : MonoBehaviour
             Destroy(other.gameObject);
             gameObject.transform.localScale *= 1.1f;
         }
+        if (other.gameObject.CompareTag("Bomb"))
+        {
+            var exp = Instantiate(explosion, other.gameObject.transform.position, Quaternion.identity, null);
+            Destroy(exp, 0.3f);
+        }
     }
 
     void decreaseSpeed()
@@ -59,6 +66,10 @@ public class Movement : MonoBehaviour
 
     void Jump()
     {
+        if(transform.localScale.magnitude > 3)
+        {
+            jumpHeight = 300f;
+        }
         rb.AddForce(new Vector2(0, jumpHeight));
         isJumping = true;
     }

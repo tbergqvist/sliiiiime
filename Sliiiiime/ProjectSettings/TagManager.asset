@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Speeddrop
   - Healthdrop
+  - Bomb
   layers:
   - Default
   - TransparentFX
