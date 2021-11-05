@@ -6,25 +6,25 @@ public class LevelGenerator : MonoBehaviour
 {
     public float levelChangeRateSeconds = 10f;
     public List<GameObject> levels;
-    public List<GameObject> loadedLevels;
     private Vector3 targetCameraPosition;
 
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("onLevelChanged", levelChangeRateSeconds, levelChangeRateSeconds);
+        InvokeRepeating("onLevelChanged", 1, levelChangeRateSeconds);
         targetCameraPosition = Camera.main.transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Camera.main.transform.position.x > targetCameraPosition.x)
+        if (Camera.main.transform.position.x >= targetCameraPosition.x)
         {
             Camera.main.transform.position = targetCameraPosition;
-        } else
+        } 
+        else
         {
-            Camera.main.transform.position += Vector3.right * 0.005f;
+            Camera.main.transform.position += Vector3.right * 5f * Time.deltaTime;
         }
     }
 
