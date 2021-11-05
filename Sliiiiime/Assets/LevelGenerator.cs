@@ -21,7 +21,7 @@ public class LevelGenerator : MonoBehaviour
         if (Camera.main.transform.position.x >= targetCameraPosition.x)
         {
             Camera.main.transform.position = targetCameraPosition;
-        } 
+        }
         else
         {
             Camera.main.transform.position += Vector3.right * 5f * Time.deltaTime;
@@ -31,7 +31,7 @@ public class LevelGenerator : MonoBehaviour
     void onLevelChanged()
     {
         int levelIndex = Random.Range(0, levels.Count);
-        targetCameraPosition += new Vector3(22, 0, 0);
+        targetCameraPosition += new Vector3(24, 0, 0);
         var level = Instantiate(levels[levelIndex], targetCameraPosition, Quaternion.identity);
         Destroy(level, levelChangeRateSeconds * 4);
     }
