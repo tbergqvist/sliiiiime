@@ -9,17 +9,17 @@ public class LifeUIHandler : MonoBehaviour
     public List<GameObject> player3Lives;
 
 
-    public void RemoveLife(Slime.PlayerNumber playerNumber)
+    public void RemoveLife(GameManager.PlayerNumber playerNumber)
     {
         switch(playerNumber)
         {
-            case Slime.PlayerNumber.Player1:
+            case GameManager.PlayerNumber.Player1:
                 DisableLife(player1Lives);
                 break;
-            case Slime.PlayerNumber.Player2:
+            case GameManager.PlayerNumber.Player2:
                 DisableLife(player2Lives);
                 break;
-            case Slime.PlayerNumber.Player3:
+            case GameManager.PlayerNumber.Player3:
                 DisableLife(player3Lives);
                 break;
         }

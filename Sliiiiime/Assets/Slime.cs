@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Slime : MonoBehaviour
 {
-    public enum PlayerNumber { Player1, Player2, Player3};
-    public PlayerNumber playerNumber;
+    public GameManager.PlayerNumber playerNumber;
     public int lives;
     public float respawnTime;
+    public bool isAlive = true;
 
     Vector3 startPos;
     void Start()
@@ -44,7 +44,8 @@ public class Slime : MonoBehaviour
     }
     void Eliminated()
     {
-
+        isAlive = false;
+        GameManager.Instance.PlayerDied();
     }
     void Respawn()
     {
