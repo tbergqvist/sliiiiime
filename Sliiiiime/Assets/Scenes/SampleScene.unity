@@ -123,6 +123,54 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &21506929
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 21506931}
+  - component: {fileID: 21506930}
+  m_Layer: 0
+  m_Name: LevelGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &21506930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 21506929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f06944cc73bec094a8d935e00819c80f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelChangeRateSeconds: 10
+  levels:
+  - {fileID: 7537064834652229012, guid: 99d819c377f111b43a66fc3eb1883dd1, type: 3}
+  - {fileID: 7537064834652229012, guid: 6c9dd91f00c8dd44eb5cef96da6193c0, type: 3}
+  - {fileID: 7537064834652229012, guid: e63386e800e82b147b225e2332b77a71, type: 3}
+--- !u!4 &21506931
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 21506929}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 98.91465, y: 2.2599316, z: -18.072304}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &229098755 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2561302296190018352, guid: 50ec35b042afd674599e0394f02df8ae, type: 3}
@@ -379,7 +427,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!50 &986450038
 Rigidbody2D:
   serializedVersion: 4
@@ -1075,6 +1123,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1527723171, guid: 50ec35b042afd674599e0394f02df8ae, type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 1187276769774166518, guid: 50ec35b042afd674599e0394f02df8ae, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0.4996338
@@ -1177,7 +1229,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3925396835773129862, guid: 50ec35b042afd674599e0394f02df8ae, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.99972534
+      value: -0.9996948
       objectReference: {fileID: 0}
     - target: {fileID: 7372862507220446990, guid: 50ec35b042afd674599e0394f02df8ae, type: 3}
       propertyPath: m_AnchoredPosition.y
