@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class LifeUIHandler : MonoBehaviour
 {
     public List<GameObject> player1Lives;
@@ -28,9 +28,9 @@ public class LifeUIHandler : MonoBehaviour
     {
         foreach (GameObject life in playerLives)
         {
-            if (life.GetComponent<SpriteRenderer>().enabled)
+            if (life.GetComponent<Image>().enabled)
             {
-                life.GetComponent<SpriteRenderer>().enabled = false;
+                life.GetComponent<Image>().enabled = false;
                 return;
             }
         }
