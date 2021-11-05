@@ -58,11 +58,13 @@ public class Slime : MonoBehaviour
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
         GetComponent<Collider2D>().enabled = false;
         GetComponent<MeshRenderer>().enabled = false;
+        GetComponent<Shooting>().enabled = false;
     }
     void EnablePlayer()
     {
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         GetComponent<Collider2D>().enabled = true;
         GetComponent<MeshRenderer>().enabled = true;
+        GetComponent<Shooting>().enabled = true;
     }
 }
