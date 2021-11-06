@@ -49,7 +49,7 @@ public class Slime : MonoBehaviour
 
         transform.localScale -= new Vector3(amount, amount, amount);
         GameManager.Instance.PlaySound(takeDamageSound, 0.8f);
-        if (transform.localScale.x <= 0)
+        if (transform.localScale.x <= 0.2f)
         {
             Died();
         }
