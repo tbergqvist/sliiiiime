@@ -70,8 +70,8 @@ public class EnemyLogic : MonoBehaviour
             shootTimer -= Time.deltaTime;
             ShootProjectile(targetPosition);
             shootTimer = shootCooldown;
-            
-            rand = Random.Range(1, 4);
+
+            fireTime = Time.time + fireRepeatTime;
         }
        
       
