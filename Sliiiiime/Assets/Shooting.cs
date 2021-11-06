@@ -24,13 +24,13 @@ public class Shooting : MonoBehaviour
     }
     void ShootProjectile()
     {
-       
+
         GameManager.Instance.PlaySound(shootSound);
         Vector2 direction = GetShootDirection();
         Vector3 projectileForce = direction * projectileSpeed;
         var bla = Mathf.Atan2(direction.y, direction.x);
         var withOffset = new Vector2(transform.position.x, transform.position.y) + direction * 0.5f;
-        
+
         var spawnedProjectile = Instantiate(projectile, new Vector3(withOffset.x, withOffset.y, 0), Quaternion.Euler(direction));
 
 
@@ -40,25 +40,34 @@ public class Shooting : MonoBehaviour
         Physics2D.IgnoreCollision(GetComponent<Collider2D>(), spawnedProjectile.GetComponent<Collider2D>());
         spawnedProjectile.GetComponent<Projectile>().playerOwner = gameObject;
 
+        SetProjectileColour(spawnedProjectile);
+
+        Destroy(spawnedProjectile, 10);
+
+    }
+
+    [System.Obsolete]
+    private void SetProjectileColour(GameObject spawnedProjectile)
+    {
         switch (GetComponent<Slime>().playerNumber)
         {
             case GameManager.PlayerNumber.Player1:
                 spawnedProjectile.GetComponent<Projectile>().GetComponentInChildren<MeshRenderer>().material.color = Color.red;
+                spawnedProjectile.GetComponent<Projectile>().GetComponentInChildren<ParticleSystem>().startColor = Color.red;
                 break;
             case GameManager.PlayerNumber.Player2:
                 spawnedProjectile.GetComponent<Projectile>().GetComponentInChildren<MeshRenderer>().material.color = Color.green;
+                spawnedProjectile.GetComponent<Projectile>().GetComponentInChildren<ParticleSystem>().startColor = Color.green;
                 break;
             case GameManager.PlayerNumber.Player3:
                 spawnedProjectile.GetComponent<Projectile>().GetComponentInChildren<MeshRenderer>().material.color = Color.blue;
+                spawnedProjectile.GetComponent<Projectile>().GetComponentInChildren<ParticleSystem>().startColor = Color.blue;
                 break;
             default:
-                spawnedProjectile.GetComponent<Projectile>().GetComponentInChildren<MeshRenderer>().material.color = Color.green;
                 break;
         }
-
-        Destroy(spawnedProjectile, 10);
- 
     }
+
     Vector2 GetShootDirection()
     {
         if (GetComponent<Slime>().playerNumber == GameManager.PlayerNumber.Player1)
