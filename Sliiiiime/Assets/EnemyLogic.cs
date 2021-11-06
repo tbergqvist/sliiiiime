@@ -21,7 +21,7 @@ public class EnemyLogic : MonoBehaviour
 
     private float fireRepeatTime = 1;
     private float fireTime;
-    private float shootCooldown;
+    private float shootCooldown=2f;
     private float shootTimer;
     private float jumpTime = 5;
     private float health = 100;
@@ -43,9 +43,7 @@ public class EnemyLogic : MonoBehaviour
         if (Time.time > fireTime)
         {
             GameManager.Instance.PlaySound(shootSound);
-            shootTimer -= Time.deltaTime;
-            ShootProjectile(targetPosition);
-            shootTimer = shootCooldown;
+
             rand = Random.Range(1, 3);
             if (rand == 1)
             {
@@ -69,13 +67,14 @@ public class EnemyLogic : MonoBehaviour
 
                 }
             }
+            shootTimer -= Time.deltaTime;
+            ShootProjectile(targetPosition);
+            shootTimer = shootCooldown;
+            
             rand = Random.Range(1, 4);
         }
        
-        if( rand == 4)
-        {
-            transform.position = Vector2.Lerp(transform.position, transform.position + Vector3.up * 2, moveSpeed * 5 * Time.deltaTime);
-        }
+      
         if (targetPosition != null)
         {
             transform.position = Vector2.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
@@ -84,7 +83,7 @@ public class EnemyLogic : MonoBehaviour
 
     private void ShootProjectile(Vector2 targetPosition)
     {
-        
+        Debug.Log("Shooting)");
         Vector2 direction = (targetPosition - new Vector2(transform.position.x, transform.position.y)).normalized;
         Vector3 projectileForce = direction * projectileSpeed;
         var bla = Mathf.Atan2(direction.y, direction.x);
