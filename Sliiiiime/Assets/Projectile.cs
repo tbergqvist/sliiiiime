@@ -52,11 +52,33 @@ public class Projectile : MonoBehaviour
                     main.startColor = Color.green;
                     break;
             }
-            playerOwner.GetComponent<Slime>().DealtDamage(0.3f);
+            if(playerOwner.TryGetComponent(out Slime owner))
+            {
+                owner.DealtDamage(0.3f);
+
+            }
+            else if(playerOwner.TryGetComponent(out EnemyLogic enemyLogic))
+            {
+                enemyLogic.DealtDamage(0.3f);
+            }
 
             Destroy(gameObject);
         }
-        else if(other.gameObject.TryGetComponent<Platform>(out _))
+        else if (other.gameObject.TryGetComponent(out EnemyLogic enemyLogic))
+        {
+            enemyLogic.TakeDamage(0.1f);
+            if (playerOwner.TryGetComponent(out Slime owner))
+            {
+                owner.DealtDamage(0.3f);
+
+            }
+            var ps = Instantiate(shootPS, transform.position, Quaternion.identity);
+            var main = ps.main;
+            main.startColor = Color.green;
+
+
+        }
+        else if(other.gameObject.TryGetComponent<Platform>(out _) || other.gameObject.TryGetComponent<Spikes>(out _))
         {
             Destroy(gameObject);
         }

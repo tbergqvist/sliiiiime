@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
         int nrOfAlivePlayers = 0;
         foreach (Slime player in allPlayers)
         {
-            if(player.isAlive && player.playerNumber != PlayerNumber.NPC)
+            if(player.isAlive)
             {
                 nrOfAlivePlayers++;
             }
@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
         {
             foreach (Slime player in allPlayers)
             {
-                if (player.isAlive && player.playerNumber != PlayerNumber.NPC)
+                if (player.isAlive)
                 {
                     EndGame(player.playerNumber);
                 }
