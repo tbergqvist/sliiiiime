@@ -16,9 +16,12 @@ public class Slime : MonoBehaviour
     }
     private void Update()
     {
-        if(!IsInCameraView() && GetComponent<MeshRenderer>().enabled)
+        if (TryGetComponent<MeshRenderer>(out _))
         {
-            Died();
+            if (!IsInCameraView() && GetComponent<MeshRenderer>().enabled)
+            {
+                Died();
+            }
         }
     }
     bool IsInCameraView()
@@ -33,8 +36,9 @@ public class Slime : MonoBehaviour
     public void TakeDamage(float amount)
     {
         transform.localScale -= new Vector3(amount, amount, amount);
-        GameManager.Instance.PlaySound(takeDamageSound,0.8f);
-        if(transform.localScale.x <= 0)
+        GameManager.Instance.PlaySound(takeDamageSound, 0.8f);
+
+        if (transform.localScale.x <= 0)
         {
             Died();
         }
@@ -48,7 +52,7 @@ public class Slime : MonoBehaviour
         DisablePlayer();
         GameObject.Find("UI").GetComponent<LifeUIHandler>().RemoveLife(playerNumber);
         lives--;
-        if(lives < 0)
+        if (lives < 0)
         {
             Eliminated();
         }
@@ -67,7 +71,7 @@ public class Slime : MonoBehaviour
         EnablePlayer();
         transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, 0f);
         transform.localScale = Vector3.one;
-        GameManager.Instance.PlaySound(respawnSound,1);
+        GameManager.Instance.PlaySound(respawnSound, 1);
     }
     void DisablePlayer()
     {
