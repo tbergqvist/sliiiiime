@@ -893,6 +893,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 1591380153216927822, guid: a0cfe001c4199c244b5dad8ba88e3769, type: 3}
+      propertyPath: winPS
+      value: 
+      objectReference: {fileID: 8574611112143605395, guid: 107d3801fbf30cb44b7f925e84132929, type: 3}
     - target: {fileID: 1591380153216927823, guid: a0cfe001c4199c244b5dad8ba88e3769, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -1047,10 +1051,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7616086672054634963, guid: ee637869a18ff2c4ea5daa59dd8f7e88, type: 3}
-      propertyPath: lives
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 7616086672054634964, guid: ee637869a18ff2c4ea5daa59dd8f7e88, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -1212,10 +1212,6 @@ PrefabInstance:
     - target: {fileID: 8923208410003099689, guid: edc3d964aed5a1e4898bd0ee03a0c2a5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8923208410003099694, guid: edc3d964aed5a1e4898bd0ee03a0c2a5, type: 3}
-      propertyPath: lives
-      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: edc3d964aed5a1e4898bd0ee03a0c2a5, type: 3}

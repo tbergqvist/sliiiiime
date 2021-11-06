@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1591380153216927823}
   - component: {fileID: 1591380153216927822}
   - component: {fileID: 1591380153216927816}
+  - component: {fileID: 707967073}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -45,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundtrackAudioSource: {fileID: 0}
+  winPS: {fileID: 8574611112143605395, guid: 107d3801fbf30cb44b7f925e84132929, type: 3}
 --- !u!82 &1591380153216927816
 AudioSource:
   m_ObjectHideFlags: 0
@@ -141,3 +143,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &707967073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1591380153216927821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f06944cc73bec094a8d935e00819c80f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelChangeRateSeconds: 10
+  levels:
+  - {fileID: 7537064834652229012, guid: 99d819c377f111b43a66fc3eb1883dd1, type: 3}
+  - {fileID: 7537064834652229012, guid: 6c9dd91f00c8dd44eb5cef96da6193c0, type: 3}
+  - {fileID: 7537064834652229012, guid: e63386e800e82b147b225e2332b77a71, type: 3}
+  enemyPrefab: {fileID: 2725977022069796397, guid: aafc55cb7cf875e488cb989d8e2c086b, type: 3}
