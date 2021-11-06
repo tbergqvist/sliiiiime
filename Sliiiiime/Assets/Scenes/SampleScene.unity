@@ -868,7 +868,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 707967073, guid: a0cfe001c4199c244b5dad8ba88e3769, type: 3}
       propertyPath: levels.Array.size
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 707967073, guid: a0cfe001c4199c244b5dad8ba88e3769, type: 3}
       propertyPath: powerUpEnemyPrefab
@@ -878,6 +878,14 @@ PrefabInstance:
       propertyPath: levels.Array.data[3]
       value: 
       objectReference: {fileID: 8025726605140013897, guid: 0e8981d78734fdd4cb158b7edaf21911, type: 3}
+    - target: {fileID: 707967073, guid: a0cfe001c4199c244b5dad8ba88e3769, type: 3}
+      propertyPath: levels.Array.data[4]
+      value: 
+      objectReference: {fileID: 8025726605140013897, guid: 0e484348a2e592e4990d48ff4b344727, type: 3}
+    - target: {fileID: 707967073, guid: a0cfe001c4199c244b5dad8ba88e3769, type: 3}
+      propertyPath: levels.Array.data[5]
+      value: 
+      objectReference: {fileID: 7537064834652229012, guid: 6c9dd91f00c8dd44eb5cef96da6193c0, type: 3}
     - target: {fileID: 1591380153216927816, guid: a0cfe001c4199c244b5dad8ba88e3769, type: 3}
       propertyPath: m_Volume
       value: 0.048
