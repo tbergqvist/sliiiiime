@@ -16,12 +16,9 @@ public class Slime : MonoBehaviour
     }
     private void Update()
     {
-        if (TryGetComponent<MeshRenderer>(out _))
+        if(!IsInCameraView() && GetComponent<Collider2D>().enabled)
         {
-            if (!IsInCameraView() && GetComponent<MeshRenderer>().enabled)
-            {
-                Died();
-            }
+            Died();
         }
     }
     bool IsInCameraView()
@@ -36,9 +33,8 @@ public class Slime : MonoBehaviour
     public void TakeDamage(float amount)
     {
         transform.localScale -= new Vector3(amount, amount, amount);
-        GameManager.Instance.PlaySound(takeDamageSound, 0.8f);
-
-        if (transform.localScale.x <= 0)
+        GameManager.Instance.PlaySound(takeDamageSound,0.8f);
+        if(transform.localScale.x <= 0)
         {
             Died();
         }
@@ -52,7 +48,7 @@ public class Slime : MonoBehaviour
         DisablePlayer();
         GameObject.Find("UI").GetComponent<LifeUIHandler>().RemoveLife(playerNumber);
         lives--;
-        if (lives < 0)
+        if(lives < 0)
         {
             Eliminated();
         }
@@ -71,20 +67,31 @@ public class Slime : MonoBehaviour
         EnablePlayer();
         transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, 0f);
         transform.localScale = Vector3.one;
-        GameManager.Instance.PlaySound(respawnSound, 1);
+        GameManager.Instance.PlaySound(respawnSound,1);
     }
     void DisablePlayer()
     {
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
         GetComponent<Collider2D>().enabled = false;
-        GetComponent<MeshRenderer>().enabled = false;
-        GetComponent<Shooting>().enabled = false;
+        if (TryGetComponent<MeshRenderer>(out var meshRenderer)) {
+            meshRenderer.enabled = false;
+        }
+        if (TryGetComponent<Shooting>(out var shooting))
+        {
+            shooting.enabled = false;
+        }
     }
     void EnablePlayer()
     {
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         GetComponent<Collider2D>().enabled = true;
-        GetComponent<MeshRenderer>().enabled = true;
-        GetComponent<Shooting>().enabled = true;
+        if (TryGetComponent<MeshRenderer>(out var meshRenderer))
+        {
+            meshRenderer.enabled = true;
+        }
+        if (TryGetComponent<Shooting>(out var shooting))
+        {
+            shooting.enabled = true;
+        }
     }
 }
