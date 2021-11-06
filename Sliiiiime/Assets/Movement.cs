@@ -45,6 +45,7 @@ public class Movement : MonoBehaviour
         {
             Jump();
         }
+
         prevVel = rb.velocity;
     }
     private void stopBounce()

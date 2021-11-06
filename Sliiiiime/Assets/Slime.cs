@@ -12,6 +12,7 @@ public class Slime : MonoBehaviour
     public AudioClip respawnSound;
     public ParticleSystem powerUpPS;
     private GameObject powerUpPSGO;
+    private bool isInvulnerable = false;
     void Start()
     {
     }
@@ -41,6 +42,11 @@ public class Slime : MonoBehaviour
     }
     public void TakeDamage(float amount)
     {
+        if(isInvulnerable)
+        {
+            return;
+        }
+
         transform.localScale -= new Vector3(amount, amount, amount);
         GameManager.Instance.PlaySound(takeDamageSound, 0.8f);
         if (transform.localScale.x <= 0)
@@ -77,6 +83,12 @@ public class Slime : MonoBehaviour
         transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, 0f);
         transform.localScale = Vector3.one;
         GameManager.Instance.PlaySound(respawnSound, 1);
+        isInvulnerable = true;
+        Invoke("DisableInvulnerability", 1.5f);
+    }
+    void DisableInvulnerability()
+    {
+        isInvulnerable = false;
     }
     void DisablePlayer()
     {
