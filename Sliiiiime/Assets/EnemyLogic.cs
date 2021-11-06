@@ -83,7 +83,6 @@ public class EnemyLogic : MonoBehaviour
 
     private void ShootProjectile(Vector2 targetPosition)
     {
-        Debug.Log("Shooting)");
         Vector2 direction = (targetPosition - new Vector2(transform.position.x, transform.position.y)).normalized;
         Vector3 projectileForce = direction * projectileSpeed;
         var bla = Mathf.Atan2(direction.y, direction.x);

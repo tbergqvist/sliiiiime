@@ -8,10 +8,14 @@ public class Movement : MonoBehaviour
     public float speed = 100f;
     public float jumpHeight = 250f;
     public float wallCheckRange;
+    public float dashRange;
+    public float dashDuration;
+    public float dashCooldown;
     public Vector2 prevVel;
     public AudioClip bounceClip;
     public AudioClip jumpClip;
 
+    private bool isDashReady = true;
     private bool isJumping = false;
     private bool isBouncing = false;
     Rigidbody2D rb;
@@ -32,10 +36,13 @@ public class Movement : MonoBehaviour
         if (horizontalMove != 0)
         {
             TryMove(horizontalMove);
+            if(Input.GetAxis("Dash" + inputAxisSuffix) > 0.8f && isDashReady)
+            {
+                StartCoroutine(Dash(horizontalMove));
+            }
         }
         if (Input.GetAxis("Vertical" + inputAxisSuffix) > 0.8f && !isJumping)
         {
-            print("Jump: " + inputAxisSuffix);
             Jump();
         }
         prevVel = rb.velocity;
@@ -91,7 +98,7 @@ public class Movement : MonoBehaviour
     }
     void TryMove(float horizontalMove)
     {
-        var actualSpeed = speed * (1 / Mathf.Max(Mathf.Min(transform.localScale.x,1.5f),0.5f));
+        var actualSpeed = speed * (1 / Mathf.Max(Mathf.Min(transform.localScale.x, 1.5f), 0.5f));
         Vector3 moveVector = new Vector3(actualSpeed, 0) * Time.deltaTime * horizontalMove;
         if (!WillWalkIntoWall(moveVector.normalized))
         {
@@ -101,7 +108,7 @@ public class Movement : MonoBehaviour
     bool WillWalkIntoWall(Vector3 moveVector)
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, moveVector, wallCheckRange * transform.localScale.x);
-        if(hit)
+        if (hit)
         {
             if (hit.transform.TryGetComponent<Platform>(out _))
             {
@@ -110,7 +117,28 @@ public class Movement : MonoBehaviour
         }
         return false;
     }
-
-
-
+    void SetDashReady()
+    {
+        isDashReady = true;
+    }
+    IEnumerator Dash(float horizontalInput)
+    {
+        print("Dash");
+        isDashReady = false;
+        Invoke("SetDashReady", dashCooldown);
+        float t = dashDuration;
+        while (t > 0)
+        {
+            if (horizontalInput > 0)
+            {
+                transform.position += Vector3.right * Time.deltaTime * dashRange;
+            }
+            else
+            {
+                transform.position -= Vector3.right * Time.deltaTime * dashRange;
+            }
+            t -= Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+    }
 }
