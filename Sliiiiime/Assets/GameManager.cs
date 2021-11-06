@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
                 nrOfAlivePlayers++;
             }
         }
-        if(nrOfAlivePlayers == 1 )
+        if(nrOfAlivePlayers == 1)
         {
             foreach (Slime player in allPlayers)
             {
@@ -69,7 +69,15 @@ public class GameManager : MonoBehaviour
             default:
                 break;
         }
+
+        Invoke("RestartGame", 10);
     }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
     public void PlaySound(AudioClip clip, float volume = 0.5f)
     {
         AudioSource.PlayClipAtPoint(clip, Vector3.zero,volume);
