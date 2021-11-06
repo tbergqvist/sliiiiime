@@ -33,7 +33,7 @@ public class Movement : MonoBehaviour
         {
             TryMove(horizontalMove);
         }
-        if (Input.GetAxis("Vertical" + inputAxisSuffix) > 0.2f && !isJumping)
+        if (Input.GetAxis("Vertical" + inputAxisSuffix) > 0.8f && !isJumping)
         {
             print("Jump: " + inputAxisSuffix);
             Jump();
