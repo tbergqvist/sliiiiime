@@ -110,6 +110,7 @@ public class EnemyLogic : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
     bool IsInCameraView()
     {
         Vector3 viewPos = Camera.main.WorldToViewportPoint(transform.position);

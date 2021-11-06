@@ -7,6 +7,7 @@ public class Projectile : MonoBehaviour
     // Start is called before the first frame update
     public GameObject playerOwner;
     public ParticleSystem shootPS;
+    public float damage;
 
     void Start()
     {
@@ -34,7 +35,7 @@ public class Projectile : MonoBehaviour
         }
         if (other.gameObject.TryGetComponent(out Slime slime))
         {
-            slime.TakeDamage(0.1f);
+            slime.TakeDamage(damage);
             var ps = Instantiate(shootPS, transform.position, Quaternion.identity);
             var main = ps.main;
             switch (slime.playerNumber)
@@ -54,22 +55,30 @@ public class Projectile : MonoBehaviour
             }
             if(playerOwner.TryGetComponent(out Slime owner))
             {
-                owner.DealtDamage(0.3f);
+                owner.DealtDamage(damage);
 
             }
             else if(playerOwner.TryGetComponent(out EnemyLogic enemyLogic))
             {
-                enemyLogic.DealtDamage(0.3f);
+                enemyLogic.DealtDamage(damage);
             }
 
             Destroy(gameObject);
         }
         else if (other.gameObject.TryGetComponent(out EnemyLogic enemyLogic))
         {
-            enemyLogic.TakeDamage(0.1f);
+            enemyLogic.TakeDamage(damage);
+            if(enemyLogic.transform.localScale.x <= 0 &&
+                other.gameObject.TryGetComponent(out PowerUpEnemyLogic powerUpEnemyLogic))
+            {
+                if (playerOwner.TryGetComponent(out Slime killer))
+                {
+                    killer.PowerUp();
+                }
+            }
             if (playerOwner.TryGetComponent(out Slime owner))
             {
-                owner.DealtDamage(0.3f);
+                owner.DealtDamage(0.2f);
 
             }
             var ps = Instantiate(shootPS, transform.position, Quaternion.identity);
@@ -80,6 +89,11 @@ public class Projectile : MonoBehaviour
         }
         else if(other.gameObject.TryGetComponent<Platform>(out _) || other.gameObject.TryGetComponent<Spikes>(out _))
         {
+            Destroy(gameObject);
+        }
+        else if(other.gameObject.TryGetComponent(out Projectile projectile))
+        {
+            Destroy(projectile);
             Destroy(gameObject);
         }
     }
