@@ -18,7 +18,7 @@ public class Slime : MonoBehaviour
     }
     private void Update()
     {
-        if(!IsInCameraView())
+        if(!IsInCameraView() && GetComponent<MeshRenderer>().enabled)
         {
             Died();
         }
