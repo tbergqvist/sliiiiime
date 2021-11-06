@@ -21,6 +21,7 @@ public class Movement : MonoBehaviour
     Rigidbody2D rb;
 
     public GameObject explosion;
+    public GameObject speedPS;
 
     // Start is called before the first frame update
     void Start()
@@ -69,6 +70,8 @@ public class Movement : MonoBehaviour
         {
             Destroy(other.gameObject);
             speed += 25;
+            var ps = Instantiate(speedPS, this.transform);
+            Destroy(ps, 7);
             Invoke("decreaseSpeed", 7);
         }
         if (other.gameObject.CompareTag("Healthdrop"))

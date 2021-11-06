@@ -33,19 +33,25 @@ public class WorldSpawner : MonoBehaviour
         {
             var d = Instantiate(speedDrop, spawnPos, Quaternion.identity);
             Destroy(d, 30);
-            speedDropTime = Time.time + repeatTime + Random.Range(0, 15);
+            speedDropTime = Time.time + repeatTime + Random.Range(-5, 15);
         }
         if (Time.time > healthDropTime)
         {
             var d = Instantiate(healthDrop, spawnPos, Quaternion.identity);
             Destroy(d, 30);
-            healthDropTime = Time.time + repeatTime + Random.Range(0, 15);
+            healthDropTime = Time.time + repeatTime + Random.Range(-5, 10);
         }
         if(Time.time > bombDropTime)
         {
             var d = Instantiate(bombDrop, spawnPos, Quaternion.identity);
             Destroy(d, 30);
-            bombDropTime = Time.time + repeatTime - Random.Range(5, 15); ;
+            bombDropTime = Time.time + repeatTime + Random.Range(-5, 5); ;
+        }
+        if (Time.time > enemySpawnTime)
+        {
+            var d = Instantiate(bombDrop, spawnPos, Quaternion.identity);
+            Destroy(d, 30);
+            enemySpawnTime = Time.time + enemySpawnRate + Random.Range(-5, 5); ;
         }
     }
 }
