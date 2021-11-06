@@ -9,6 +9,7 @@ public class Shooting : MonoBehaviour
     public GameObject projectile;
     public AudioClip shootSound;
     public string inputAxisSuffix;
+    public float damage;
     float shootTimer;
 
 
@@ -33,12 +34,12 @@ public class Shooting : MonoBehaviour
 
         var spawnedProjectile = Instantiate(projectile, new Vector3(withOffset.x, withOffset.y, 0), Quaternion.Euler(direction));
 
-
         spawnedProjectile.transform.Rotate(0, 0, bla / Mathf.PI * 180 + 90);
         spawnedProjectile.transform.localScale = gameObject.transform.localScale * (0.3f);
         spawnedProjectile.GetComponent<Rigidbody2D>().AddForce(projectileForce, ForceMode2D.Impulse);
         Physics2D.IgnoreCollision(GetComponent<Collider2D>(), spawnedProjectile.GetComponent<Collider2D>());
         spawnedProjectile.GetComponent<Projectile>().playerOwner = gameObject;
+        spawnedProjectile.GetComponent<Projectile>().damage = damage;
 
         SetProjectileColour(spawnedProjectile);
 

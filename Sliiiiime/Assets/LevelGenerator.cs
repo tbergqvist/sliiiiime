@@ -7,6 +7,7 @@ public class LevelGenerator : MonoBehaviour
     public float levelChangeRateSeconds = 10f;
     public List<GameObject> levels;
     public GameObject enemyPrefab;
+    public GameObject powerUpEnemyPrefab;
     private Vector3 targetCameraPosition;
 
     // Start is called before the first frame update
@@ -40,5 +41,14 @@ public class LevelGenerator : MonoBehaviour
     void SpawnEnemy()
     {
         Instantiate(enemyPrefab, new Vector3(targetCameraPosition.x, targetCameraPosition.y, 1), Quaternion.identity);
+        if (Random.Range(0.0f, 1.0f) <= 0.33f)
+        {
+            Invoke("SpawnPowerUpEnemy", 1);
+        }
+    }
+    void SpawnPowerUpEnemy()
+    {
+        Instantiate(powerUpEnemyPrefab, new Vector3(targetCameraPosition.x, targetCameraPosition.y, 1), Quaternion.identity);
+
     }
 }

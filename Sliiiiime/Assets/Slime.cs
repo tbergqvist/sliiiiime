@@ -10,15 +10,20 @@ public class Slime : MonoBehaviour
     public bool isAlive = true;
     public AudioClip takeDamageSound;
     public AudioClip respawnSound;
-
+    public ParticleSystem powerUpPS;
+    private GameObject powerUpPSGO;
     void Start()
     {
     }
     private void Update()
     {
-        if(!IsInCameraView() && GetComponent<Collider2D>().enabled)
+        if (!IsInCameraView() && GetComponent<Collider2D>().enabled)
         {
             Died();
+        }
+        if (powerUpPSGO)
+        {
+            powerUpPSGO.transform.localScale = transform.localScale;
         }
     }
     bool IsInCameraView()
@@ -37,8 +42,8 @@ public class Slime : MonoBehaviour
     public void TakeDamage(float amount)
     {
         transform.localScale -= new Vector3(amount, amount, amount);
-        GameManager.Instance.PlaySound(takeDamageSound,0.8f);
-        if(transform.localScale.x <= 0)
+        GameManager.Instance.PlaySound(takeDamageSound, 0.8f);
+        if (transform.localScale.x <= 0)
         {
             Died();
         }
@@ -52,7 +57,7 @@ public class Slime : MonoBehaviour
         DisablePlayer();
         GameObject.Find("UI").GetComponent<LifeUIHandler>().RemoveLife(playerNumber);
         lives--;
-        if(lives < 0)
+        if (lives < 0)
         {
             Eliminated();
         }
@@ -71,13 +76,14 @@ public class Slime : MonoBehaviour
         EnablePlayer();
         transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, 0f);
         transform.localScale = Vector3.one;
-        GameManager.Instance.PlaySound(respawnSound,1);
+        GameManager.Instance.PlaySound(respawnSound, 1);
     }
     void DisablePlayer()
     {
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
         GetComponent<Collider2D>().enabled = false;
-        if (TryGetComponent<MeshRenderer>(out var meshRenderer)) {
+        if (TryGetComponent<MeshRenderer>(out var meshRenderer))
+        {
             meshRenderer.enabled = false;
         }
         if (TryGetComponent<Shooting>(out var shooting))
@@ -97,5 +103,20 @@ public class Slime : MonoBehaviour
         {
             shooting.enabled = true;
         }
+    }
+    public void PowerUp()
+    {
+        GetComponent<Shooting>().damage = 0.3f;
+        GetComponent<Shooting>().shootCooldown = 0.18f;
+        var ps = Instantiate(powerUpPS, transform);
+        powerUpPSGO = ps.gameObject;
+        Invoke("EndPowerUp", 4.5f);
+        Destroy(ps, 4.5f);
+    }
+    void EndPowerUp()
+    {
+        GetComponent<Shooting>().damage = 0.2f;
+        GetComponent<Shooting>().shootCooldown = 0.25f;
+
     }
 }

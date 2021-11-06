@@ -21,7 +21,6 @@ public class Movement : MonoBehaviour
     Rigidbody2D rb;
 
     public GameObject explosion;
-    public GameObject speedPS;
 
     // Start is called before the first frame update
     void Start()
@@ -69,15 +68,13 @@ public class Movement : MonoBehaviour
         if (other.gameObject.CompareTag("Speeddrop"))
         {
             Destroy(other.gameObject);
-            speed += 25;
-            var ps = Instantiate(speedPS, this.transform);
-            Destroy(ps, 7);
+            speed += 15;
             Invoke("decreaseSpeed", 7);
         }
         if (other.gameObject.CompareTag("Healthdrop"))
         {
             Destroy(other.gameObject);
-            gameObject.transform.localScale *= 1.1f;
+            gameObject.transform.localScale += new Vector3(0.3f,0.3f,0.3f);
         }
         if (other.gameObject.CompareTag("Bomb"))
         {
@@ -90,7 +87,7 @@ public class Movement : MonoBehaviour
 
     void decreaseSpeed()
     {
-        speed -= 25;
+        speed -= 15;
     }
 
     void Jump()
@@ -126,7 +123,6 @@ public class Movement : MonoBehaviour
     }
     IEnumerator Dash(float horizontalInput)
     {
-        print("Dash");
         isDashReady = false;
         Invoke("SetDashReady", dashCooldown);
         float t = dashDuration;
