@@ -163,6 +163,7 @@ MonoBehaviour:
   projectile: {fileID: 3094436083709358127, guid: 34b6bf6a9c20cb54da002711ead325c8, type: 3}
   shootSound: {fileID: 8300000, guid: 1b8e6f83b3d417c45b8f271dff70c552, type: 3}
   inputAxisSuffix: 
+  damage: 0.2
 --- !u!114 &6889150876956697907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,3 +182,4 @@ MonoBehaviour:
   isAlive: 1
   takeDamageSound: {fileID: 8300000, guid: 54e710fc8d7a1c444842273db39f2995, type: 3}
   respawnSound: {fileID: 8300000, guid: 66c67beeec663f641a32ae9950bffb95, type: 3}
+  powerUpPS: {fileID: 5842858271049896538, guid: b3fd7b728c5c1bb419e7219d7976a634, type: 3}
