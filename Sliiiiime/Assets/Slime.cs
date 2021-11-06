@@ -24,7 +24,7 @@ public class Slime : MonoBehaviour
     bool IsInCameraView()
     {
         Vector3 viewPos = Camera.main.WorldToViewportPoint(transform.position);
-        if (viewPos.x >= 0 && viewPos.x <= 1 && viewPos.y >= 0 && viewPos.y <= 1)
+        if (viewPos.x >= -0.2f && viewPos.x <= 1.2f && viewPos.y >= -0.2f && viewPos.y <= 1.2f)
         {
             return true;
         }
