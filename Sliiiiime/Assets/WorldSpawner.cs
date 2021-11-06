@@ -47,14 +47,5 @@ public class WorldSpawner : MonoBehaviour
             Destroy(d, 30);
             bombDropTime = Time.time + repeatTime - Random.Range(5, 15); ;
         }
-        if (Time.time > enemySpawnTime)
-        {
-            var d = Instantiate(Enemy, spawnPos, Quaternion.identity);
-            Destroy(d, 30);
-            enemySpawnTime = Time.time + enemySpawnRate - Random.Range(5, 15); ;
-        }
     }
-
-
-
 }
