@@ -23,7 +23,7 @@ public class EnemyLogic : MonoBehaviour
 
     private Vector2 targetPosition;
 
-    private float fireRepeatTime = 1;
+    private float fireRepeatTime = 3f;
     private float fireTime;
     private float shootCooldown = 2f;
     private float shootTimer;
