@@ -45,7 +45,7 @@ public class EnemyLogic : MonoBehaviour
             GameManager.Instance.PlaySound(shootSound);
 
             rand = Random.Range(1, 3);
-            if (rand == 1)
+           if (rand == 1)
             {
                 if (player3 != null)
                 {
@@ -59,7 +59,7 @@ public class EnemyLogic : MonoBehaviour
                     targetPosition = player2.transform.position;
                 }
             }
-            if (rand == 2)
+            if (rand == 3)
             {
                 if (player3 != null)
                 {
