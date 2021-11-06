@@ -53,12 +53,12 @@ public class Projectile : MonoBehaviour
                     main.startColor = Color.green;
                     break;
             }
-            if(playerOwner.TryGetComponent(out Slime owner))
+            if(playerOwner != null && playerOwner.TryGetComponent(out Slime owner))
             {
                 owner.DealtDamage(damage);
 
             }
-            else if(playerOwner.TryGetComponent(out EnemyLogic enemyLogic))
+            else if(playerOwner != null && playerOwner.TryGetComponent(out EnemyLogic enemyLogic))
             {
                 enemyLogic.DealtDamage(damage);
             }
@@ -71,12 +71,12 @@ public class Projectile : MonoBehaviour
             if(enemyLogic.transform.localScale.x <= 0 &&
                 other.gameObject.TryGetComponent(out PowerUpEnemyLogic powerUpEnemyLogic))
             {
-                if (playerOwner.TryGetComponent(out Slime killer))
+                if (playerOwner != null && playerOwner.TryGetComponent(out Slime killer))
                 {
                     killer.PowerUp();
                 }
             }
-            if (playerOwner.TryGetComponent(out Slime owner))
+            if (playerOwner != null && playerOwner.TryGetComponent(out Slime owner))
             {
                 owner.DealtDamage(0.2f);
 
