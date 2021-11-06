@@ -15,9 +15,9 @@ public class Spikes : MonoBehaviour
         dealDamageTimer -= Time.deltaTime;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
-        if(collision.transform.TryGetComponent(out Slime slime) && dealDamageTimer <= 0)
+        if (collision.transform.TryGetComponent(out Slime slime) && dealDamageTimer <= 0)
         {
             slime.TakeDamage(damage);
             dealDamageTimer = dealDamageCooldown;

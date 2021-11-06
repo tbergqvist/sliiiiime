@@ -14,7 +14,22 @@ public class Slime : MonoBehaviour
     void Start()
     {
     }
-
+    private void Update()
+    {
+        if(!IsInCameraView())
+        {
+            Died();
+        }
+    }
+    bool IsInCameraView()
+    {
+        Vector3 viewPos = Camera.main.WorldToViewportPoint(transform.position);
+        if (viewPos.x >= 0 && viewPos.x <= 1 && viewPos.y >= 0 && viewPos.y <= 1)
+        {
+            return true;
+        }
+        return false;
+    }
     public void TakeDamage(float amount)
     {
         transform.localScale -= new Vector3(amount, amount, amount);
