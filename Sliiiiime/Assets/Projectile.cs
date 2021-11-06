@@ -33,7 +33,7 @@ public class Projectile : MonoBehaviour
         if (other.gameObject.TryGetComponent(out Slime slime))
         {
             slime.TakeDamage(0.1f);
-            playerOwner.GetComponent<Slime>().DealtDamage(0.1f);
+            playerOwner.GetComponent<Slime>().DealtDamage(0.3f);
 
             Destroy(gameObject);
         }

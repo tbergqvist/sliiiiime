@@ -91,7 +91,7 @@ public class Movement : MonoBehaviour
     }
     void TryMove(float horizontalMove)
     {
-        var actualSpeed = speed * (2 - Mathf.Min(1.8f, gameObject.transform.localScale.x));
+        var actualSpeed = speed * (2 / transform.localScale.x);
         Vector3 moveVector = new Vector3(actualSpeed, 0) * Time.deltaTime * horizontalMove;
         if (!WillWalkIntoWall(moveVector.normalized))
         {
