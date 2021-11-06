@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance { get { return _instance; } }
     public AudioSource soundtrackAudioSource;
-
+    public ParticleSystem winPS;
 
     private void Awake()
     {
@@ -70,11 +70,22 @@ public class GameManager : MonoBehaviour
                 break;
         }
 
+        InvokeRepeating("SpawnParticles", 0, 1);
         Invoke("RestartGame", 10);
+    }
+
+    public void SpawnParticles()
+    {
+        var cameraSize = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth, Camera.main.pixelHeight));
+
+        var x = Random.Range(Camera.main.transform.position.x - cameraSize.x * 0.4f, Camera.main.transform.position.x + cameraSize.x * 0.4f);
+        var y = Random.Range(Camera.main.transform.position.y - cameraSize.y * 0.4f, Camera.main.transform.position.y + cameraSize.y * 0.4f);
+        Instantiate(winPS, new Vector3(x, y), Quaternion.identity);
     }
 
     public void RestartGame()
     {
+        CancelInvoke("SpawnParticles");
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
