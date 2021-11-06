@@ -16,7 +16,7 @@ public class Slime : MonoBehaviour
     }
     private void Update()
     {
-        if(!IsInCameraView() && GetComponent<MeshRenderer>().enabled)
+        if(!IsInCameraView() && GetComponent<Collider2D>().enabled)
         {
             Died();
         }
@@ -73,14 +73,25 @@ public class Slime : MonoBehaviour
     {
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
         GetComponent<Collider2D>().enabled = false;
-        GetComponent<MeshRenderer>().enabled = false;
-        GetComponent<Shooting>().enabled = false;
+        if (TryGetComponent<MeshRenderer>(out var meshRenderer)) {
+            meshRenderer.enabled = false;
+        }
+        if (TryGetComponent<Shooting>(out var shooting))
+        {
+            shooting.enabled = false;
+        }
     }
     void EnablePlayer()
     {
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         GetComponent<Collider2D>().enabled = true;
-        GetComponent<MeshRenderer>().enabled = true;
-        GetComponent<Shooting>().enabled = true;
+        if (TryGetComponent<MeshRenderer>(out var meshRenderer))
+        {
+            meshRenderer.enabled = true;
+        }
+        if (TryGetComponent<Shooting>(out var shooting))
+        {
+            shooting.enabled = true;
+        }
     }
 }
