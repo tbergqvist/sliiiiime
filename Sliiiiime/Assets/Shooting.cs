@@ -13,11 +13,6 @@ public class Shooting : MonoBehaviour
     float shootTimer;
 
 
-    void Start()
-    {
-
-    }
-
     void Update()
     {
         shootTimer -= Time.deltaTime;

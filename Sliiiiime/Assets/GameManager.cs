@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
-    public enum PlayerNumber { Player1, Player2, Player3 };
+    public enum PlayerNumber { Player1, Player2, Player3, NPC };
 
     public static GameManager Instance { get { return _instance; } }
     public AudioSource soundtrackAudioSource;
