@@ -1,85 +1,44 @@
-Shader "Unlit/SlimeShader"
-{
-    Properties
-    {
-         _MainTex ("Base (RGB) Trans (A)", 2D) = "white" {}
-        _SlimeSize ("Slime size", Float) = 1
-        _WaveSize ("Wave size", Float) = 1
-        _WaveSpeed ("Wave speed", Float) = 1
+Shader "Unlit/ProjectileShader" {
+    Properties{
+        _MainTex("Base (RGB)", 2D) = "white" {}
+        _SpeedX("SpeedX", float) = 3.0
+        _SpeedY("SpeedY", float) = 3.0
+        _Scale("Scale", range(0.005, 0.2)) = 0.03
+        _TileX("TileX", float) = 5
+        _TileY("TileY", float) = 5
     }
-    SubShader
-    {
-         Tags {"Queue"="Transparent" "IgnoreProjector"="True" "RenderType"="Transparent"}
-    
-        LOD 100
+        SubShader{
+            Tags { "RenderType" = "Opaque" }
+            LOD 200
 
-        ZWrite Off
-        Blend SrcAlpha OneMinusSrcAlpha 
-
-        Pass
-        {
             CGPROGRAM
-               #pragma vertex vert
-                 #pragma fragment frag
-                 #pragma target 2.0
-                 #pragma multi_compile_fog
-
-            #include "UnityCG.cginc"
-
-            struct appdata
-            {
-                     float4 vertex : POSITION;
-                     float2 texcoord : TEXCOORD0;
-                     UNITY_VERTEX_INPUT_INSTANCE_ID            };
-
-            struct v2f
-            {
-                     float4 vertex : SV_POSITION;
-                     float2 texcoord : TEXCOORD0;
-                     UNITY_FOG_COORDS(1)
-                     UNITY_VERTEX_OUTPUT_STEREO
-            };
+            #pragma surface surf Lambert
 
             sampler2D _MainTex;
-            Float _SlimeSize;
-            Float _WaveSize;
-            Float _WaveSpeed;
-            float4 _MainTex_ST;
+            float4 uv_MainTex_ST;
 
-            v2f vert (appdata v)
+            float _SpeedX;
+            float _SpeedY;
+            float _Scale;
+            float _TileX;
+            float _TileY;
+
+            struct Input {
+                float2 uv_MainTex;
+            };
+
+
+            void surf(Input IN, inout SurfaceOutput o)
             {
-                     v2f o;
-                     UNITY_SETUP_INSTANCE_ID(v);
-                     UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
-                     o.vertex = UnityObjectToClipPos(v.vertex);
-                     o.texcoord = v.texcoord//TRANSFORM_TEX(v.texcoord, _MainTex);
-                     UNITY_TRANSFER_FOG(o,o.vertex);
-                    return o;
-            }
+                float2 uv = IN.uv_MainTex;
+                uv.x += sin((uv.x + uv.y) * _TileX + _Time.g * _SpeedX) * _Scale;
+                uv.x += cos(uv.y * _TileY + _Time.g * _SpeedY) * _Scale;
 
-            fixed4 frag (v2f i) : SV_Target
-            {
-
-                // sample the texture
-                fixed4 col = tex2D(_MainTex, i.texcoord);
-                // apply fog
-                UNITY_APPLY_FOG(i.fogCoord, col);
-
-                float distanceFromCenter = distance(float2(0.5,0.5),i.texcoord);
-                
-                float halfRange = (_WaveSize - (-_WaveSize)) / 2;
-                float slimeSizeSineWave = (_SlimeSize + (-_WaveSize) + halfRange + sin(_Time * _WaveSpeed) * halfRange);  
-
-                if(distanceFromCenter > slimeSizeSineWave)
-                {
-                 return fixed4(0,0,0,0);
-                }
-                else
-                {
-                    return col;
-                }
+                half4 c = tex2D(_MainTex, uv);
+                o.Albedo = c.rgb;
+                o.Alpha = c.a;
             }
             ENDCG
         }
-    }
+            FallBack "Diffuse"
 }

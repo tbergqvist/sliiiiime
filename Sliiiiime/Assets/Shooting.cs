@@ -24,22 +24,40 @@ public class Shooting : MonoBehaviour
     }
     void ShootProjectile()
     {
+       
         GameManager.Instance.PlaySound(shootSound);
         Vector2 direction = GetShootDirection();
         Vector3 projectileForce = direction * projectileSpeed;
         var bla = Mathf.Atan2(direction.y, direction.x);
         var withOffset = new Vector2(transform.position.x, transform.position.y) + direction * 0.5f;
-
+        
         var spawnedProjectile = Instantiate(projectile, new Vector3(withOffset.x, withOffset.y, 0), Quaternion.Euler(direction));
+
+
         spawnedProjectile.transform.Rotate(0, 0, bla / Mathf.PI * 180 + 90);
         spawnedProjectile.transform.localScale = gameObject.transform.localScale * (0.3f);
         spawnedProjectile.GetComponent<Rigidbody2D>().AddForce(projectileForce, ForceMode2D.Impulse);
         Physics2D.IgnoreCollision(GetComponent<Collider2D>(), spawnedProjectile.GetComponent<Collider2D>());
         spawnedProjectile.GetComponent<Projectile>().playerOwner = gameObject;
 
-
+        switch (GetComponent<Slime>().playerNumber)
+        {
+            case GameManager.PlayerNumber.Player1:
+                spawnedProjectile.GetComponent<Projectile>().GetComponentInChildren<MeshRenderer>().material.color = Color.red;
+                break;
+            case GameManager.PlayerNumber.Player2:
+                spawnedProjectile.GetComponent<Projectile>().GetComponentInChildren<MeshRenderer>().material.color = Color.green;
+                break;
+            case GameManager.PlayerNumber.Player3:
+                spawnedProjectile.GetComponent<Projectile>().GetComponentInChildren<MeshRenderer>().material.color = Color.blue;
+                break;
+            default:
+                spawnedProjectile.GetComponent<Projectile>().GetComponentInChildren<MeshRenderer>().material.color = Color.green;
+                break;
+        }
 
         Destroy(spawnedProjectile, 10);
+ 
     }
     Vector2 GetShootDirection()
     {

@@ -15,13 +15,17 @@ public class EnemyLogic : MonoBehaviour
     private GameObject player1;
     private GameObject player2;
     private GameObject player3;
+    public int lives;
+    public float respawnTime;
+    public bool isAlive = true;
+    public AudioClip takeDamageSound;
+    public AudioClip respawnSound;
 
-    
     private Vector2 targetPosition;
 
-    private float fireRepeatTime = 1;
+    private float fireRepeatTime = 3f;
     private float fireTime;
-    private float shootCooldown=2f;
+    private float shootCooldown = 2f;
     private float shootTimer;
     private float jumpTime = 5;
     private float health = 100;
@@ -36,7 +40,7 @@ public class EnemyLogic : MonoBehaviour
 
         Destroy(this.gameObject, lifeTime);
     }
- 
+
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -45,7 +49,7 @@ public class EnemyLogic : MonoBehaviour
             GameManager.Instance.PlaySound(shootSound);
 
             rand = Random.Range(1, 3);
-           if (rand == 1)
+            if (rand == 1)
             {
                 if (player3 != null)
                 {
@@ -73,8 +77,8 @@ public class EnemyLogic : MonoBehaviour
 
             fireTime = Time.time + fireRepeatTime;
         }
-       
-      
+
+
         if (targetPosition != null)
         {
             transform.position = Vector2.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
@@ -90,12 +94,43 @@ public class EnemyLogic : MonoBehaviour
 
         var spawnedProjectile = Instantiate(projectile, new Vector3(withOffset.x, withOffset.y, 0), Quaternion.Euler(direction));
         spawnedProjectile.transform.Rotate(0, 0, bla / Mathf.PI * 180 + 90);
-        spawnedProjectile.transform.localScale *= 0.5f;
+        spawnedProjectile.transform.localScale = gameObject.transform.localScale * (0.1f);
         spawnedProjectile.GetComponent<Rigidbody2D>().AddForce(projectileForce, ForceMode2D.Impulse);
         Physics2D.IgnoreCollision(GetComponent<Collider2D>(), spawnedProjectile.GetComponent<Collider2D>());
         spawnedProjectile.GetComponent<Projectile>().playerOwner = this.gameObject;
-
+        spawnedProjectile.GetComponent<Projectile>().GetComponentInChildren<MeshRenderer>().material.color = Color.green;
         Destroy(spawnedProjectile, 10);
         fireTime += Time.time + fireRepeatTime;
     }
+
+    private void Update()
+    {
+        if (!IsInCameraView())
+        {
+            Destroy(gameObject);
+        }
+    }
+    bool IsInCameraView()
+    {
+        Vector3 viewPos = Camera.main.WorldToViewportPoint(transform.position);
+        if (viewPos.x >= -0.2f && viewPos.x <= 1.2f && viewPos.y >= -0.2f && viewPos.y <= 1.2f)
+        {
+            return true;
+        }
+        return false;
+    }
+    public void TakeDamage(float amount)
+    {
+        transform.localScale -= new Vector3(amount, amount, amount);
+        GameManager.Instance.PlaySound(takeDamageSound, 0.8f);
+        if (transform.localScale.x <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+    public void DealtDamage(float amount)
+    {
+        transform.localScale += new Vector3(amount, amount, amount);
+    }
+
 }
