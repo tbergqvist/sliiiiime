@@ -8,6 +8,7 @@ public class Shooting : MonoBehaviour
     public float shootCooldown;
     public GameObject projectile;
     public AudioClip shootSound;
+    public string inputAxisSuffix;
     float shootTimer;
 
     void Start()
@@ -19,7 +20,7 @@ public class Shooting : MonoBehaviour
     {
         shootTimer -= Time.deltaTime;
 
-        if(Input.GetMouseButtonDown(0) && shootTimer <= 0)
+        if(Input.GetAxis("Fire" + inputAxisSuffix) > 0.8f && shootTimer <= 0)
         {
             ShootProjectile();
             shootTimer = shootCooldown;
