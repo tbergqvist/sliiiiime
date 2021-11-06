@@ -98,14 +98,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea32ab2f07af0fe4a92052e549ce0097, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputAxisSuffix: 2
+  inputAxisSuffix: 3
   speed: 10
   jumpHeight: 250
   wallCheckRange: 0.55
+  dashRange: 30
+  dashDuration: 0.1
+  dashCooldown: 2
   prevVel: {x: 0, y: 0}
   bounceClip: {fileID: 8300000, guid: 19628b03bab936a4b9838e358f5af547, type: 3}
   jumpClip: {fileID: 8300000, guid: acae91a3b33ae5d4b81bc5d5ba52d0fd, type: 3}
-  explosion: {fileID: 0}
+  explosion: {fileID: 7624095403598816204, guid: 6da62906b8a999547b413988f23850f0, type: 3}
 --- !u!50 &7616086672054634960
 Rigidbody2D:
   serializedVersion: 4
@@ -155,10 +158,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 418989d161c92a24cb00f4255e7a3dd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileSpeed: 10
-  shootCooldown: 0.5
+  projectileSpeed: 18
+  shootCooldown: 0.25
   projectile: {fileID: 3094436083709358127, guid: 34b6bf6a9c20cb54da002711ead325c8, type: 3}
   shootSound: {fileID: 8300000, guid: 1b8e6f83b3d417c45b8f271dff70c552, type: 3}
+  inputAxisSuffix: 3
 --- !u!114 &7616086672054634963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,7 +176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNumber: 2
-  lives: 1
+  lives: 2
   respawnTime: 5
   isAlive: 1
   takeDamageSound: {fileID: 8300000, guid: 54e710fc8d7a1c444842273db39f2995, type: 3}
