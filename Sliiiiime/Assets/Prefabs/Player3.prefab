@@ -176,7 +176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNumber: 2
-  lives: 1
+  lives: 2
   respawnTime: 5
   isAlive: 1
   takeDamageSound: {fileID: 8300000, guid: 54e710fc8d7a1c444842273db39f2995, type: 3}

@@ -880,7 +880,7 @@ Transform:
   m_LocalScale: {x: 1.3321875, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1591380152564488228
 PrefabInstance:
@@ -1047,17 +1047,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7616086672054634962, guid: ee637869a18ff2c4ea5daa59dd8f7e88, type: 3}
-      propertyPath: shootCooldown
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 7616086672054634962, guid: ee637869a18ff2c4ea5daa59dd8f7e88, type: 3}
-      propertyPath: inputAxisSuffix
+    - target: {fileID: 7616086672054634963, guid: ee637869a18ff2c4ea5daa59dd8f7e88, type: 3}
+      propertyPath: lives
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7616086672054634962, guid: ee637869a18ff2c4ea5daa59dd8f7e88, type: 3}
-      propertyPath: projectileSpeed
-      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 7616086672054634964, guid: ee637869a18ff2c4ea5daa59dd8f7e88, type: 3}
       propertyPath: m_RootOrder
@@ -1103,26 +1095,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7616086672054634967, guid: ee637869a18ff2c4ea5daa59dd8f7e88, type: 3}
-      propertyPath: dashRange
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 7616086672054634967, guid: ee637869a18ff2c4ea5daa59dd8f7e88, type: 3}
-      propertyPath: explosion
-      value: 
-      objectReference: {fileID: 7624095403598816204, guid: 6da62906b8a999547b413988f23850f0, type: 3}
-    - target: {fileID: 7616086672054634967, guid: ee637869a18ff2c4ea5daa59dd8f7e88, type: 3}
-      propertyPath: dashCooldown
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7616086672054634967, guid: ee637869a18ff2c4ea5daa59dd8f7e88, type: 3}
-      propertyPath: dashDuration
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7616086672054634967, guid: ee637869a18ff2c4ea5daa59dd8f7e88, type: 3}
-      propertyPath: inputAxisSuffix
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 7616086672054634972, guid: ee637869a18ff2c4ea5daa59dd8f7e88, type: 3}
       propertyPath: m_Name
       value: Player3
@@ -1136,18 +1108,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6889150876956697906, guid: cd8424d521688aa47bd418daa779b676, type: 3}
-      propertyPath: shootPS
-      value: 
-      objectReference: {fileID: 4981785881107031948, guid: c8c973896a4dbec49bef00a0e1ccdbaa, type: 3}
-    - target: {fileID: 6889150876956697906, guid: cd8424d521688aa47bd418daa779b676, type: 3}
-      propertyPath: shootCooldown
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 6889150876956697906, guid: cd8424d521688aa47bd418daa779b676, type: 3}
-      propertyPath: projectileSpeed
-      value: 18
-      objectReference: {fileID: 0}
     - target: {fileID: 6889150876956697908, guid: cd8424d521688aa47bd418daa779b676, type: 3}
       propertyPath: m_Name
       value: Player1
@@ -1195,18 +1155,6 @@ PrefabInstance:
     - target: {fileID: 6889150876956697916, guid: cd8424d521688aa47bd418daa779b676, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6889150876956697919, guid: cd8424d521688aa47bd418daa779b676, type: 3}
-      propertyPath: dashRange
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 6889150876956697919, guid: cd8424d521688aa47bd418daa779b676, type: 3}
-      propertyPath: dashCooldown
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6889150876956697919, guid: cd8424d521688aa47bd418daa779b676, type: 3}
-      propertyPath: dashDuration
-      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd8424d521688aa47bd418daa779b676, type: 3}
@@ -1265,37 +1213,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8923208410003099690, guid: edc3d964aed5a1e4898bd0ee03a0c2a5, type: 3}
-      propertyPath: dashRange
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 8923208410003099690, guid: edc3d964aed5a1e4898bd0ee03a0c2a5, type: 3}
-      propertyPath: explosion
-      value: 
-      objectReference: {fileID: 7624095403598816204, guid: 6da62906b8a999547b413988f23850f0, type: 3}
-    - target: {fileID: 8923208410003099690, guid: edc3d964aed5a1e4898bd0ee03a0c2a5, type: 3}
-      propertyPath: dashCooldown
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8923208410003099690, guid: edc3d964aed5a1e4898bd0ee03a0c2a5, type: 3}
-      propertyPath: dashDuration
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8923208410003099695, guid: edc3d964aed5a1e4898bd0ee03a0c2a5, type: 3}
-      propertyPath: shootPS
-      value: 
-      objectReference: {fileID: 4981785881107031948, guid: c8c973896a4dbec49bef00a0e1ccdbaa, type: 3}
-    - target: {fileID: 8923208410003099695, guid: edc3d964aed5a1e4898bd0ee03a0c2a5, type: 3}
-      propertyPath: shootCooldown
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 8923208410003099695, guid: edc3d964aed5a1e4898bd0ee03a0c2a5, type: 3}
-      propertyPath: inputAxisSuffix
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8923208410003099695, guid: edc3d964aed5a1e4898bd0ee03a0c2a5, type: 3}
-      propertyPath: projectileSpeed
-      value: 18
+    - target: {fileID: 8923208410003099694, guid: edc3d964aed5a1e4898bd0ee03a0c2a5, type: 3}
+      propertyPath: lives
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: edc3d964aed5a1e4898bd0ee03a0c2a5, type: 3}
