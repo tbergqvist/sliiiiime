@@ -68,7 +68,7 @@ public class Projectile : MonoBehaviour
         else if (other.gameObject.TryGetComponent(out EnemyLogic enemyLogic))
         {
             enemyLogic.TakeDamage(damage);
-            if(enemyLogic.transform.localScale.x <= 0 &&
+            if(enemyLogic.transform.localScale.x <= 0.2f &&
                 other.gameObject.TryGetComponent(out PowerUpEnemyLogic powerUpEnemyLogic))
             {
                 if (playerOwner != null && playerOwner.TryGetComponent(out Slime killer))
